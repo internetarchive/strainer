@@ -16,9 +16,10 @@ It's still a WIP, but it's usable right now.
 ```
 usage: strainer [-h|--help] -f|--file "<value>" [-f|--file "<value>" ...]
                 [-m|--max-host-occurence <integer>] [-e|--excluded-hosts
-                "<value>" [-e|--excluded-hosts "<value>" ...]]
+                "<value>" [-e|--excluded-hosts "<value>" ...]] [--temp-dir
+                "<value>"]
 
-                manipulate H3 frontier files
+                manipulate Heritrix frontier files
 
 Arguments:
 
@@ -30,4 +31,6 @@ Arguments:
                             limit will be excluded. -1 value means no limit.
                             Default: -1
   -e  --excluded-hosts      Specific hosts to exclude from the final seed list.
+      --temp-dir            Temporary directory to use for the key/value
+                            database. Default: /tmp
 ```
