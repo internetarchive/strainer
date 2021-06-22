@@ -16,8 +16,7 @@ var arguments struct {
 }
 
 func argumentParsing(args []string) {
-	// Create new parser object
-	parser := argparse.NewParser("strainer", "manipulate H3 frontier files")
+	parser := argparse.NewParser("strainer", "manipulate Heritrix frontier files")
 
 	frontierFiles := parser.StringList("f", "file", &argparse.Options{
 		Required: true,
@@ -26,12 +25,12 @@ func argumentParsing(args []string) {
 	maxHostOccurence := parser.Int("m", "max-host-occurence", &argparse.Options{
 		Required: false,
 		Default:  -1,
-		Help:     "Max number of a occurence of a given host to accept in the final seeds list. If an host is parsed more than X times, new occurences of that host past that limit will be excluded. -1 value means no limit.",
+		Help:     "Max number of a occurence of a given host to accept in the final seed list. If an host is parsed more than X times, new occurences of that host past that limit will be excluded. -1 value means no limit",
 	})
 
 	excludedHosts := parser.StringList("e", "excluded-hosts", &argparse.Options{
 		Required: false,
-		Help:     "Specific hosts to exclude from the final result.",
+		Help:     "Specific hosts to exclude from the final seed list.",
 	})
 
 	tempDir := parser.String("", "temp-dir", &argparse.Options{

@@ -9,7 +9,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
 	"github.com/zeebo/xxh3"
 )
@@ -20,7 +19,7 @@ func process(path string, seencheck *Seencheck, stats *Stats) {
 	// Open frontier file
 	frontier, err := os.Open(path)
 	if err != nil {
-		logrus.Fatal(err)
+		log.Fatal(err)
 	}
 	defer frontier.Close()
 
@@ -28,7 +27,7 @@ func process(path string, seencheck *Seencheck, stats *Stats) {
 	if strings.HasSuffix(path, ".gz") {
 		reader, err := gzip.NewReader(frontier)
 		if err != nil {
-			logrus.Fatal(err)
+			log.Fatal(err)
 		}
 		defer reader.Close()
 		scanner = bufio.NewScanner(reader)

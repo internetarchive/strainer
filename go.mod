@@ -4,7 +4,6 @@ go 1.16
 
 require (
 	github.com/akamensky/argparse v1.3.0
-	github.com/dgraph-io/badger v1.6.2 // indirect
 	github.com/dgraph-io/badger/v3 v3.2103.0
 	github.com/fatih/color v1.12.0 // indirect
 	github.com/gosuri/uilive v0.0.4

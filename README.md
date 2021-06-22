@@ -25,9 +25,9 @@ Arguments:
   -h  --help                Print help information
   -f  --file                Frontier file(s) to process, can be .gz files.
   -m  --max-host-occurence  Max number of a occurence of a given host to accept
-                            in the final seeds list. If an host is parsed more
+                            in the final seed list. If an host is parsed more
                             than X times, new occurences of that host past that
-                            limit will be excluded. -1 value means no limit..
+                            limit will be excluded. -1 value means no limit.
                             Default: -1
-  -e  --excluded-hosts      Specific hosts to exclude from the final result.
+  -e  --excluded-hosts      Specific hosts to exclude from the final seed list.
 ```
