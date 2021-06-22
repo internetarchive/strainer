@@ -9,6 +9,7 @@ import (
 
 var arguments struct {
 	MaxHostOccurence int64
+	TempDir          string
 	FrontierFiles    []string
 	ExcludedHosts    []string
 	ShowStats        bool
@@ -33,6 +34,12 @@ func argumentParsing(args []string) {
 		Help:     "Specific hosts to exclude from the final result.",
 	})
 
+	tempDir := parser.String("", "temp-dir", &argparse.Options{
+		Required: false,
+		Default:  "/tmp",
+		Help:     "Temporary directory to use for the key/value database",
+	})
+
 	// Parse input
 	err := parser.Parse(args)
 	if err != nil {
@@ -46,4 +53,5 @@ func argumentParsing(args []string) {
 	arguments.FrontierFiles = *frontierFiles
 	arguments.MaxHostOccurence = int64(*maxHostOccurence)
 	arguments.ExcludedHosts = *excludedHosts
+	arguments.TempDir = *tempDir
 }

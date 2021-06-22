@@ -14,7 +14,7 @@ func main() {
 	argumentParsing(os.Args)
 
 	// Open seencheck database
-	tempDir, err := ioutil.TempDir("/tmp", "strainer-")
+	tempDir, err := ioutil.TempDir(arguments.TempDir, "strainer-")
 	if err != nil {
 		logrus.Fatal(err)
 	}
