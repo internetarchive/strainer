@@ -7,7 +7,6 @@ import (
 
 	"github.com/dgraph-io/badger/v3"
 	"github.com/paulbellamy/ratecounter"
-	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -17,13 +16,13 @@ func main() {
 	// Open seencheck database
 	tempDir, err := ioutil.TempDir(arguments.TempDir, "strainer-")
 	if err != nil {
-		logrus.Fatal(err)
+		log.Fatal(err)
 	}
 	seencheck := new(Seencheck)
 	seencheck.SeenCount = new(ratecounter.Counter)
 	seencheck.SeenDB, err = badger.Open(badger.DefaultOptions(tempDir))
 	if err != nil {
-		logrus.Fatal(err)
+		log.Fatal(err)
 	}
 
 	// Show statistics

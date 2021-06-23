@@ -48,6 +48,13 @@ func argumentParsing(args []string) {
 		os.Exit(0)
 	}
 
+	// Test if all specified frontier files exist
+	for _, path := range *frontierFiles {
+		if _, err := os.Stat(path); os.IsNotExist(err) {
+			log.Fatalf("Specified frontier file %s do not exist!", path)
+		}
+	}
+
 	// Finally save the collected flags
 	arguments.FrontierFiles = *frontierFiles
 	arguments.MaxHostOccurrence = int64(*maxHostOccurrence)
