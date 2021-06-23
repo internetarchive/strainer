@@ -8,11 +8,11 @@ import (
 )
 
 var arguments struct {
-	MaxHostOccurence int64
-	TempDir          string
-	FrontierFiles    []string
-	ExcludedHosts    []string
-	ShowStats        bool
+	MaxHostOccurrence int64
+	TempDir           string
+	FrontierFiles     []string
+	ExcludedHosts     []string
+	ShowStats         bool
 }
 
 func argumentParsing(args []string) {
@@ -22,10 +22,10 @@ func argumentParsing(args []string) {
 		Required: true,
 		Help:     "Frontier file(s) to process, can be .gz files."})
 
-	maxHostOccurence := parser.Int("m", "max-host-occurence", &argparse.Options{
+	maxHostOccurrence := parser.Int("m", "max-host-occurrence", &argparse.Options{
 		Required: false,
 		Default:  -1,
-		Help:     "Max number of a occurence of a given host to accept in the final seed list. If an host is parsed more than X times, new occurences of that host past that limit will be excluded. -1 value means no limit",
+		Help:     "Max number of a occurrence of a given host to accept in the final seed list. If an host is parsed more than X times, new occurrences of that host past that limit will be excluded. -1 value means no limit",
 	})
 
 	excludedHosts := parser.StringList("e", "excluded-hosts", &argparse.Options{
@@ -50,7 +50,7 @@ func argumentParsing(args []string) {
 
 	// Finally save the collected flags
 	arguments.FrontierFiles = *frontierFiles
-	arguments.MaxHostOccurence = int64(*maxHostOccurence)
+	arguments.MaxHostOccurrence = int64(*maxHostOccurrence)
 	arguments.ExcludedHosts = *excludedHosts
 	arguments.TempDir = *tempDir
 }

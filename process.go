@@ -65,7 +65,7 @@ func process(path string, seencheck *Seencheck, stats *Stats) {
 			}
 			if !found {
 				// Check host to see if we should exclude the URL
-				if arguments.MaxHostOccurence != -1 || len(arguments.ExcludedHosts) != 0 {
+				if arguments.MaxHostOccurrence != -1 || len(arguments.ExcludedHosts) > 0 {
 					if isHostExcluded(URL.Host, stats) {
 						stats.UniqueCounter.Incr(1)
 						seencheck.Seen(hash, URL.Host)

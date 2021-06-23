@@ -50,7 +50,7 @@ func (s *Stats) printLiveStats() {
 		stats.AddRow("  - Unique:", p.Sprintf("%d URIs", s.UniqueCounter.Value()))
 		stats.AddRow("  - Duplicate:", p.Sprintf("%d URIs", s.DuplicateCounter.Value()))
 
-		if arguments.MaxHostOccurence != -1 {
+		if arguments.MaxHostOccurrence != -1 || len(arguments.ExcludedHosts) > 0 {
 			stats.AddRow("  - Excluded:", p.Sprintf("%d URIs", s.ExcludedCounter.Value()))
 			stats.AddRow("  - Unique hosts:", p.Sprintf("%d", s.HostsCount.Value()))
 		}

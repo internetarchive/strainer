@@ -35,8 +35,8 @@ func isHostExcluded(targetHost string, stats *Stats) bool {
 		if host.Value == targetHost {
 			found = true
 
-			// Check if the number of occurence of the host reached the --max-host-occurence limit
-			if host.Counter.Value() >= arguments.MaxHostOccurence {
+			// Check if the number of occurrence of the host reached the --max-host-occurrence limit
+			if host.Counter.Value() >= arguments.MaxHostOccurrence {
 				host.Counter.Incr(1)
 				stats.ExcludedCounter.Incr(1)
 				return true
