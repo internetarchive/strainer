@@ -8,6 +8,7 @@ import (
 	"github.com/dgraph-io/badger/v3"
 	"github.com/paulbellamy/ratecounter"
 	"github.com/sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 )
 
 func main() {
@@ -40,11 +41,19 @@ func main() {
 
 	go stats.printLiveStats()
 
+	// If the output file doesn't exist, create it, or append to the file
+	fileName := "strainer_" + time.Now().Format("20060102150405") + ".txt"
+	outFile, err := os.OpenFile(fileName, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer outFile.Close()
+
 	// Process frontier file(s)
 	for _, filePath := range arguments.FrontierFiles {
 		stats.FileProcessingCount++
 		stats.FilePath = filePath
-		process(filePath, seencheck, stats)
+		process(filePath, outFile, seencheck, stats)
 	}
 
 	os.RemoveAll(tempDir)

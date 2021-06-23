@@ -7,13 +7,12 @@ import (
 	"os"
 	"strconv"
 	"strings"
-	"time"
 
 	log "github.com/sirupsen/logrus"
 	"github.com/zeebo/xxh3"
 )
 
-func process(path string, seencheck *Seencheck, stats *Stats) {
+func process(path string, outFile *os.File, seencheck *Seencheck, stats *Stats) {
 	var scanner *bufio.Scanner
 
 	// Open frontier file
@@ -34,14 +33,6 @@ func process(path string, seencheck *Seencheck, stats *Stats) {
 	} else {
 		scanner = bufio.NewScanner(frontier)
 	}
-
-	// If the file doesn't exist, create it, or append to the file
-	fileName := "strainer_" + time.Now().Format("20060102150405") + ".txt"
-	outFile, err := os.OpenFile(fileName, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer outFile.Close()
 
 	for scanner.Scan() {
 		stats.ParsedCounter.Incr(1)
